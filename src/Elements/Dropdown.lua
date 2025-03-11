@@ -31,6 +31,10 @@ function Element:New(Config)
         Opened = false,
         Tabs = {}
     }
+
+    if Dropdown.Multi then
+        Dropdown.Value = {}
+    end
     
     local CanCallback = true
     
@@ -203,7 +207,7 @@ function Element:New(Config)
 
 		if Dropdown.Multi then
 			for Idx, Value in next, Values do
-				if table.find(Dropdown.Values, Value) then
+				if table.find(Dropdown.Value, Value) then
 					Str = Str .. Value .. ", "
 				end
 			end
@@ -312,14 +316,14 @@ function Element:New(Config)
                         Tween(TabMain.UIElements.TabItem.TextLabel, 0.1, {Position = UDim2.new(0,18+Element.TabPadding,0.5,0), TextTransparency = 0}):Play()
                         table.insert(Dropdown.Value, TabMain.Name)
                     else
-                        if not Dropdown.AllowNone and #Dropdown.Value == 1 then
+                        if not Dropdown.AllowNone and #Dropdown.Values == 1 then
                             return
                         end
                         TabMain.Selected = false
                         Tween(TabMain.UIElements.TabItem, 0.1, {BackgroundTransparency = 1}):Play()
                         Tween(TabMain.UIElements.TabItem.ImageLabel, 0.1, {ImageTransparency = 1}):Play()
                         Tween(TabMain.UIElements.TabItem.TextLabel, 0.1, {Position = UDim2.new(0,0,0.5,0), TextTransparency = .4}):Play()
-                        for i, v in ipairs(Dropdown.Value) do
+                        for i, v in ipairs(Dropdown.Values) do
                             if v == TabMain.Name then
                                 table.remove(Dropdown.Value, i)
                                 break
