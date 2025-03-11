@@ -31,10 +31,6 @@ function Element:New(Config)
         Opened = false,
         Tabs = {}
     }
-
-    if Dropdown.Multi then
-        Dropdown.Value = {}
-    end
     
     local CanCallback = true
     
@@ -208,7 +204,9 @@ function Element:New(Config)
 		if Dropdown.Multi then
 			for Idx, Value in next, Values do
 				if table.find(Dropdown.Value, Value) then
-					Str = Str .. Value .. ", "
+                    if typeof(Value) ~= "nil" then
+                        Str = Str .. Value .. ", "
+                    end
 				end
 			end
 			Str = Str:sub(1, #Str - 2)
