@@ -203,7 +203,7 @@ function Element:New(Config)
 
 		if Dropdown.Multi then
 			for Idx, Value in next, Values do
-				if table.find(Dropdown.Value, Value) then
+				if table.find(Dropdown.Values, Value) then
 					Str = Str .. Value .. ", "
 				end
 			end
