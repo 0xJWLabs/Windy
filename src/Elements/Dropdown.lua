@@ -31,6 +31,10 @@ function Element:New(Config)
         Opened = false,
         Tabs = {}
     }
+
+    if Dropdown.Multi then
+        Dropdown.Multi = {}
+    end
     
     local CanCallback = true
     
